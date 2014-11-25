@@ -1,0 +1,46 @@
+<div class = "container">
+	<div class = "row">
+		<div class = "col-lg-9">
+			<div class="panel panel-default">
+				<div class = "panel-body">
+					<div class = "page-header">
+						<h3><%= @article.title %></h3>
+					</div>
+					<%= image_tag("blogTestImg.jpg", width: "100%", alt: "article image", class: "featureImg") %>
+					<p>
+						<%= @article.text %>
+					</p>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class = "panel-body">
+					<div class = "page-header">
+						<h3>Comments</h3>
+					</div>
+					<%= render @article.comments%>
+
+					<h4>Add a comment:</h4>
+					<%= render "comments/form" %>
+				</div>
+			</div>
+		</div>
+		<div class = "col-lg-3">
+			<div class = "list-group">
+				<div class = "list-group-item">
+					<h3>Recent Posts</h3>
+				</div>
+			</div>
+			<div class = "list-group">
+				<% @otherArticles.reverse_each do |otherArticle| %>
+				<a href = "#" class = "list-group-item"> <h4 class = "list-group-item-heading"><%= otherArticle.title %></h4>
+				<p class = "list-group-item-text">
+					<%= truncate(otherArticle.text, :length => 300, :separator => ' ') %>
+				</p> </a>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%= link_to 'Back to all articles', articles_path %>
+<%= link_to 'Edit', edit_article_path(@article) %>

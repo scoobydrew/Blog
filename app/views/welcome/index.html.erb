@@ -1,0 +1,52 @@
+<div class = "container">
+	<div id = "welcomeCarousel" class="carousel slide" data-interval = "5000" data-ride = "carousel">
+		<ol class = "carousel-indicators">
+			<li data-target = "#welcomeCarousel" data-slide-to = "0" class = "active"></li>
+			<li data-target = "#welcomeCarousel" data-slide-to = "1"></li>
+			<li data-target = "#welcomeCarousel" data-slide-to = "2"></li>
+		</ol>
+		<div class = "carousel-inner">
+			<div class = "active item">
+				<h2>Hello world 1!</h2>
+				<div class="carousel-caption">
+					<h3>Read more posts:</h3>
+					<%= link_to 'My Blog', controller: 'articles'%>
+				</div>
+			</div>
+			<div class = "item">
+				<h2>Hello world 2!</h2>
+				<div class="carousel-caption">
+					<h3>Read more posts:</h3>
+					<%= link_to 'My Blog', controller: 'articles'%>
+				</div>
+			</div>
+			<div class = "item">
+				<h2>Hello world 3!</h2>
+				<div class="carousel-caption">
+					<h3>Read more posts:</h3>
+					<%= link_to 'My Blog', controller: 'articles'%>
+				</div>
+			</div>
+		</div>
+		<a class="carousel-control left" href="#welcomeCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="carousel-control right" href="#welcomeCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+	</div>
+</div>
+<div class="container">
+	<div class = "row">
+		<% @latestArticles.reverse_each do |article| %>
+		<div class = "col-md-3">
+			<!-- Bootstrap uses a system of twelve total boxes.  The numbers total 12, but you can divide the space how you like -->
+			<h3><%= article.title %></h3>
+			<p>
+				<%= truncate(article.text, :length => 450, :separator => ' ') %>
+			</p>
+			<%= link_to 'Read more', article_path(article) %>
+		</div>
+		<% end %>
+	</div>
+</div>
