@@ -17,5 +17,6 @@
 //= require jquery-readyselector
 //= require bootstrap-sprockets
 //= require typeahead.min
+//= require bootstrap-tagsinput.min
 //= require_tree .
 

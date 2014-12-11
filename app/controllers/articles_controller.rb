@@ -2,7 +2,6 @@ class ArticlesController < ApplicationController
   http_basic_authenticate_with name: "drewsmith", password: "secret", except: [:index, :show]
   def new
     @article = Article.new
-    @tags = Tag.all
   end
   
   def show
@@ -43,6 +42,11 @@ class ArticlesController < ApplicationController
     @article.destroy
     
     redirect_to articles_path
+  end
+  
+  def getTags
+    @tags = Tag.all
+    render :json => @tags
   end
   
   private

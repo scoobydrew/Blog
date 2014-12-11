@@ -6,10 +6,16 @@ $(".articles.new").ready ->
   engine = new Bloodhound {
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    local: autocomplete_items
+    remote: "/tags.json"
   }
   
   engine.initialize()
   
-  $('#auto_complete').typeahead { hint: true, highlight: true, minLength: 1 },  { name: "names", displayKey: "name", source: engine.ttAdapter()}
+  $('#auto_complete').tagsinput( typeaheadjs: { name: "names", displayKey: "name", valueKey: 'name', source: engine.ttAdapter()} )
+  
+  # $('#auto_complete').on 'typeahead:selected', (event, selection) ->
+    # alert selection.name
+    # $('#auto_complete').typeahead 'val', ''
+    # event.stopPropagation()
+    # return
   return
