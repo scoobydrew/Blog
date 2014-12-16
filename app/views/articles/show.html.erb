@@ -8,7 +8,7 @@
 					</div>
 					<%= image_tag("blogTestImg.jpg", width: "100%", alt: "article image", class: "featureImg") %>
 					<p>
-						<%= @article.text %>
+						<%= raw @article.text %>
 					</p>
 				</div>
 			</div>
@@ -23,6 +23,8 @@
 					<%= render "comments/form" %>
 				</div>
 			</div>
+			<%= link_to 'Back to all articles', articles_path %>
+			<%= link_to 'Edit', edit_article_path(@article) %>
 		</div>
 		<div class = "col-lg-3">
 			<div class = "list-group">
@@ -34,13 +36,10 @@
 				<% @otherArticles.reverse_each do |otherArticle| %>
 				<a href = "#" class = "list-group-item"> <h4 class = "list-group-item-heading"><%= otherArticle.title %></h4>
 				<p class = "list-group-item-text">
-					<%= truncate(otherArticle.text, :length => 300, :separator => ' ') %>
+					<%= truncate(otherArticle.summary, :length => 300, :separator => ' ') %>
 				</p> </a>
 				<% end %>
 			</div>
 		</div>
 	</div>
 </div>
-
-<%= link_to 'Back to all articles', articles_path %>
-<%= link_to 'Edit', edit_article_path(@article) %>

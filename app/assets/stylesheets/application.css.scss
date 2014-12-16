@@ -13,6 +13,7 @@
  *= require_self
  *= require typeahead-rails
  *= require bootstrap-tagsinput
+ *= require bootstrap-wysihtml5
  *= require_tree .
  */
 
@@ -36,4 +37,8 @@
 }
 .carousel{
     margin-top: 20px;
+}
+
+textarea {
+  resize: none;
 }

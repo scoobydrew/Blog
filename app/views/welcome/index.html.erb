@@ -43,7 +43,7 @@
 			<!-- Bootstrap uses a system of twelve total boxes.  The numbers total 12, but you can divide the space how you like -->
 			<h3><%= article.title %></h3>
 			<p>
-				<%= truncate(article.text, :length => 450, :separator => ' ') %>
+				<%= truncate(article.summary, :length => 450, :separator => ' ') %>
 			</p>
 			<%= link_to 'Read more', article_path(article) %>
 		</div>

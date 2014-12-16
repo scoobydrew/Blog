@@ -13,9 +13,19 @@ $(".articles.new").ready ->
   
   $('#auto_complete').tagsinput( typeaheadjs: { name: "names", displayKey: "name", valueKey: 'name', source: engine.ttAdapter()} )
   
-  # $('#auto_complete').on 'typeahead:selected', (event, selection) ->
-    # alert selection.name
-    # $('#auto_complete').typeahead 'val', ''
-    # event.stopPropagation()
-    # return
+  $('#article_text').wysihtml5()
+  return
+  
+$(".articles.edit").ready ->
+  engine = new Bloodhound {
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    remote: "/tags.json"
+  }
+  
+  engine.initialize()
+  
+  $('#auto_complete').tagsinput( typeaheadjs: { name: "names", displayKey: "name", valueKey: 'name', source: engine.ttAdapter()} )
+  
+  $('#article_text').wysihtml5()
   return

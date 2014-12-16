@@ -18,5 +18,6 @@
 //= require bootstrap-sprockets
 //= require typeahead.min
 //= require bootstrap-tagsinput.min
+//= require bootstrap-wysihtml5
 //= require_tree .
 
