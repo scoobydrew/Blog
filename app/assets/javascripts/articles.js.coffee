@@ -3,29 +3,35 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(".articles.new").ready ->
-  engine = new Bloodhound {
-    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    remote: "/tags.json"
-  }
-  
-  engine.initialize()
-  
-  $('#auto_complete').tagsinput( typeaheadjs: { name: "names", displayKey: "name", valueKey: 'name', source: engine.ttAdapter()} )
-  
-  $('#article_text').wysihtml5()
+  do initForm;
   return
   
 $(".articles.edit").ready ->
+  do initForm;
+  return
+  
+initForm = ->
   engine = new Bloodhound {
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    remote: "/tags.json"
+    remote: {
+      url: "/tags.json?name=%QUERY",
+      filter: (list) ->
+        return $.map(list, (data) ->
+          return { id: data.id, name: data.name }
+        )
+    }
   }
   
   engine.initialize()
   
-  $('#auto_complete').tagsinput( typeaheadjs: { name: "names", displayKey: "name", valueKey: 'name', source: engine.ttAdapter()} )
+  $('#auto_complete').tagsinput( itemValue: "id", itemText: "name", typeaheadjs: { name: "names", displayKey: "name", source: engine.ttAdapter()} )
+  tagsArray = $('#divTags').data('tags')
+  for tag in tagsArray
+    $('#auto_complete').tagsinput('add', tag)
+  
+  $('#auto_complete').on 'itemAdded', (event) ->
+    return
   
   $('#article_text').wysihtml5()
   return
