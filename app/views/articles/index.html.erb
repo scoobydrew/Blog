@@ -7,10 +7,17 @@
 				<div class = "list-group-item">
 
 					<h4 class = "list-group-item-heading"><%= link_to article.title, article_path(article) %></h4>
-					<p><%=raw article.text %></p>
-					<%= link_to 'Edit', edit_article_path(article) %>
-					<%= link_to 'Destroy', article_path(article),
-					method: :delete, data: { confirm: 'Are you sure?' } %>
+					<div id="divThumbnail" >
+						<%= image_tag article.thumbnail.url(:thumb).to_s, alt: "article image", class: "featureImg" if article.thumbnail?%>
+					</div>
+					<p>
+						<%= article.summary %>
+					</p>
+					<div id = "divArticleOptions" >
+						<%= link_to 'Edit', edit_article_path(article) %>
+						<%= link_to 'Destroy', article_path(article),
+						method: :delete, data: { confirm: 'Are you sure?' } %>
+					</div>
 
 				</div>
 				<% end %>

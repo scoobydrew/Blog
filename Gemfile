@@ -31,6 +31,8 @@ gem 'typeahead-rails'
 gem 'jquery-turbolinks'
 gem 'bootstrap-wysihtml5-rails'
 gem "disable_assets_logger", "~> 1.0.0", group: :development
+gem 'rmagick'
+gem 'carrierwave'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

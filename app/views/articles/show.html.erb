@@ -6,7 +6,7 @@
 					<div class = "page-header">
 						<h3><%= @article.title %></h3>
 					</div>
-					<%= image_tag("blogTestImg.jpg", width: "100%", alt: "article image", class: "featureImg") %>
+					<%= image_tag @article.thumbnail.url(:thumb).to_s, alt: "article image", class: "featureImg" if @article.thumbnail?%>
 					<p>
 						<%= raw @article.text %>
 					</p>

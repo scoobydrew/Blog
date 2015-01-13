@@ -25,13 +25,10 @@ initForm = ->
   
   engine.initialize()
   
-  $('#auto_complete').tagsinput( itemValue: "id", itemText: "name", typeaheadjs: { name: "names", displayKey: "name", source: engine.ttAdapter()} )
+  $('#auto_complete').tagsinput( itemValue: "id", itemText: "name", typeaheadjs: { name: "names", displayKey: "name", source: engine.ttAdapter(), autoselect: true } )
   tagsArray = $('#divTags').data('tags')
   for tag in tagsArray
     $('#auto_complete').tagsinput('add', tag)
-  
-  $('#auto_complete').on 'itemAdded', (event) ->
-    return
   
   $('#article_text').wysihtml5()
   return
