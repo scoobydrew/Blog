@@ -1,17 +1,15 @@
 class CommentsController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   def create
     @article = Article.find(params[:article_id])
     @comment = @article.comments.create(comment_params)
     redirect_to article_path(@article)
   end
 
-  def destroy
-    if current_user.role == admin then
-      @article = Article.find(params[:article_id])
-      @comment = @article.comments.find(params[:id])
-      @comment.destroy
-    end
+  def destroy #TODO set up to only allow commenter or admin to destroy
+    @article = Article.find(params[:article_id])
+    @comment = @article.comments.find(params[:id])
+    @comment.destroy
     redirect_to article_path(@article)
   end
 
