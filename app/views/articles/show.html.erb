@@ -6,7 +6,7 @@
 					<div class = "page-header">
 						<h3><%= @article.title %></h3>
 					</div>
-					<%= image_tag @article.thumbnail.url(:thumb).to_s, alt: "article image", class: "featureImg" if @article.thumbnail?%>
+					<%= image_tag @article.thumbnail.url().to_s, alt: "article image", class: "featureImg" if @article.thumbnail?%>
 					<p>
 						<%= raw @article.text %>
 					</p>
@@ -26,9 +26,14 @@
 						<h3>Comments</h3>
 					</div>
 					<%= render @article.comments%>
-
+					<% if user_signed_in? %>
 					<h4>Add a comment:</h4>
 					<%= render "comments/form" %>
+					<% else %>
+					<h4>
+						You must be signed in to comment.
+					</h4>
+					<% end %>
 				</div>
 			</div>
 			<%= link_to 'Back to all articles', articles_path %>
