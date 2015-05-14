@@ -20,4 +20,8 @@ class ApplicationController < ActionController::Base
       }
     end
   end
+  
+  def deny_access
+    redirect_to('/')
+  end
 end

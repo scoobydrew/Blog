@@ -7,6 +7,8 @@ Blog::Application.routes.draw do
   end
 
   get "/tags", to: "articles#getTags"
+  
+  get "/admin", to: "admin#admin"
 
   root 'welcome#index'
 end

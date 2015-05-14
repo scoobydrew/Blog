@@ -1,0 +1,20 @@
+<div class = "container">
+	<h1>Administration</h1>
+	<p>
+		This is the admin page.
+	</p>
+	<h3>Manage Article Tags</h3>
+	<div id = "listTags" class = "list-group">
+		<% @tags.each do |tag| %>
+		<div class = "list-group-item clearfix">
+			<div>
+				<%= tag.text %>
+				<%= link_to 'Edit', edit_article_path(article) %>
+				<%= link_to 'Destroy', article_path(article),
+				method: :delete, data: { confirm: 'Are you sure?' } %>
+			</div>
+		</div>
+		<% end %>
+	</div>
+	<%= submit_tag 'New tag', {class: "newTagLink", type: "button", data: {newtag: ''}} %>
+</div>
